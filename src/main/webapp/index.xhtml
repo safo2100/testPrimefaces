@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+<h:head>
+<script>
+
+function test() {
+  console.log('toto');
+} 
+
+setInterval(function(){ console.log('toto'); redirectToEvidence(); }, 30000);
+</script>
+</h:head>
+<h:body>
+<h:form id="formId">
+<p:remoteCommand name="redirectToEvidence" actionListener="#{firstBean.decrement()}" id="remoteUpdateTable" global="true" ignoreAutoUpdate="true"/>
+<h:commandButton  value="#{firstBean.btnName}" action="#{firstBean.onBtnClick()}" />
+<p:commandButton value="#{firstBean.btnName}" action="#{firstBean.onBtnClick()}" update="formId" />
+<h:outputText id="txt_count" value="#{firstBean.number}" />
+<p:poll interval="100" listener="#{firstBean.increment}" update="txt_count" />
+<p:commandButton value="login" action="#{firstBean.login()}" update="formId" />
+</h:form>
+
+</h:body>
+</html>
